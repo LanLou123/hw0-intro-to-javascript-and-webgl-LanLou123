@@ -12,12 +12,14 @@
 precision highp float;
 
 uniform vec4 u_Color; // The color with which to render this instance of geometry.
+uniform vec4 u_EyePos;
 
 // These are the interpolated values out of the rasterizer, so you can't know
 // their specific values without knowing the vertices that contributed to them
 in vec4 fs_Nor;
 in vec4 fs_LightVec;
 in vec4 fs_Col;
+in vec4 fs_Pos;
 
 out vec4 out_Col; // This is the final output color that you will see on your
                   // screen for the pixel that is currently being processed.
@@ -26,6 +28,11 @@ void main()
 {
     // Material base color (before shading)
         vec4 diffuseColor = u_Color;
+
+        vec3 vdir = normalize(fs_Pos.xyz - u_EyePos.xyz);
+        vec3 halfwaydir =normalize(fs_LightVec.xyz+ vdir);
+        float spec = pow(max(0.0,dot(halfwaydir,normalize(fs_Nor.xyz))),30.f);
+        vec3 speccol = vec3(1,1,1);
 
         // Calculate the diffuse term for Lambert shading
         float diffuseTerm = dot(normalize(fs_Nor), normalize(fs_LightVec));
@@ -39,5 +46,5 @@ void main()
                                                             //lit by our point light are not completely black.
 
         // Compute final shaded color
-        out_Col = vec4(diffuseColor.rgb * lightIntensity, diffuseColor.a);
+        out_Col = vec4(diffuseColor.rgb * lightIntensity + spec*speccol, diffuseColor.a);
 }
