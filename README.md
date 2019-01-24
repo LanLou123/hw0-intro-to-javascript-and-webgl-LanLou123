@@ -1,4 +1,5 @@
 # Intro to javascript and webgl
+# [demo url](https://lanlou123.github.io/hw0-intro-to-javascript-and-webgl-LanLou123/)
 
 ## Objective
 - Check that the tools and build configuration we will be using for the class works.
@@ -8,6 +9,8 @@
 - cube class
 - u_color gui
 - different shaders, including one in vertex shader which twisit the cube and one in frag shader to alter color based on screen space coords
+
+
 
 ## Resources
 - Javascript modules https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/import
