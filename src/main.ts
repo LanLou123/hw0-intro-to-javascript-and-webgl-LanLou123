@@ -85,7 +85,7 @@ function main() {
       }
       const lambert = new ShaderProgram([
           new Shader(gl.VERTEX_SHADER, vert_s),
-          new Shader(gl.FRAGMENT_SHADER, require('./shaders/lambert-frag.glsl')),
+          new Shader(gl.FRAGMENT_SHADER, require('./shaders/myfrag.glsl')),
       ]);
     camera.update();
     stats.begin();

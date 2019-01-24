@@ -93,6 +93,8 @@ class Cube extends Drawable {
         ]);
 
 
+
+
         this.generateIdx();
         this.generatePos();
         this.generateNor();
